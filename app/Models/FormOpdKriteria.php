@@ -12,17 +12,14 @@ class FormOpdKriteria extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['id', 'form_opd_id', 'nama_kriteria'];
+    protected $fillable = ['id',  'nama_kriteria'];
 
     protected static function booted() {
         static::creating(fn($model) => $model->id = (string) Str::uuid());
     }
 
-    public function formOpd() {
-        return $this->belongsTo(FormOpd::class, 'form_opd_id');
-    }
-
-    public function details() {
-        return $this->hasMany(FormOpdKriteriaDetail::class, 'form_opd_kriteria_id');
+       public function formOpds()
+    {
+        return $this->hasMany(FormOpd::class, 'id_kriteria', 'id');
     }
 }

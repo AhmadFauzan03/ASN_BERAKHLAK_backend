@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('total_poins', function (Blueprint $table) {
             $table->string('id')->unique()->primary();
             $table->string('id_user');
+            $table->unsignedTinyInteger('periode_bulan');
+            $table->unsignedSmallInteger('periode_tahun');
             $table->string('total_poin');
             $table->timestamps();
 

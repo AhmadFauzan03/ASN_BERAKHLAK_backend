@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('form_opd_kriterias', function (Blueprint $table) {
+         Schema::create('form_opd_kriterias', function (Blueprint $table) {
             $table->string('id')->primary();
-            $table->string('form_opd_id');
-            $table->string('nama_kriteria');
+            $table->string('nama_kriteria'); 
+            $table->integer('poin')->default(0); // poin sesuai mapping
             $table->timestamps();
 
-             $table->foreign('form_opd_id')->references('id')->on('form_opds')->onDelete('cascade');
             
         });
     }

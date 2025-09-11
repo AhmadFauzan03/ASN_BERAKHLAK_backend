@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             KriteriaSeeder::class,
             StatusBeritaSeeder::class,
             StatusSeeder::class,
+            FormOpdKriteriaSeeder::class
         ]);
     }
 }

@@ -13,6 +13,8 @@ class TotalPoin extends Model
     protected $fillable = [
         'id',
         'id_user',
+        'periode_bulan',
+        'periode_tahun',
         'total_poin',
     ];
 

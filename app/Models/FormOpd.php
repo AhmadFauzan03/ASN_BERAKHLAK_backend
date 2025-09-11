@@ -6,37 +6,45 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 
-
 class FormOpd extends Model
 {
-      use HasFactory;
-
-    protected $table = 'form_opds';
-    public $incrementing = false; // karena ID string
-    protected $keyType = 'string';
-
     protected $fillable = [
         'id',
         'id_user',
         'id_status',
-        'keterangan',
+        'id_kriteria',
+        'periode_bulan',
+        'periode_tahun',
+        'gambar1','gambar2','gambar3','gambar4','gambar5',
+        'link_vid1','link_vid2','link_vid3','link_vid4','link_vid5',
+        'keterangan'
     ];
 
-    // Auto-generate ID custom setiap create
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
-            if (empty($model->id)) {
-                $model->id = 'FOPD-' . Str::uuid(); // contoh: FOPD-xxxx
-            }
+            $model->id = $model->id ?? 'FOPD-' . Str::uuid();
         });
     }
 
-    // Relasi ke kriteria
-    public function kriterias()
+    public function user()
     {
-        return $this->hasMany(FormOpdKriteria::class, 'form_opd_id');
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'id_status');
+    }
+
+
+    // Relasi ke kriteria
+     public function kriterias()
+    {
+        return $this->belongsTo(FormOpdKriteria::class, 'id_kriteria', 'id');
     }
 }
