@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\KriteriaController;
 use App\Http\Controllers\Api\SubKriteriaController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AkumulasiTotalPoinController;
+use App\Http\Controllers\Api\FormOpdDetailController;
 
 // =================== ROUTE PUBLIK ===================
 // Login
@@ -56,7 +57,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     // Tim Verifikasi → verifikasi form OPD
     Route::middleware('role:tim verifikasi')->group(function () {
-       Route::put('/form-opd/{id}/update-status', [FormOpdController::class, 'updateStatus'])
+       Route::put('/form-opd/{id}/update-status', [FormOpdDetailController::class, 'updateStatus'])
         ->name('form-opd.update-status');
         Route::get('/form-opd/all-data', [FormOpdController::class, 'get_all_data'])
         ->name('form-opd.get-all');

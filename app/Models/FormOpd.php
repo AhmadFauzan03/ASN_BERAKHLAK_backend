@@ -12,14 +12,14 @@ class FormOpd extends Model
         'id',
         'id_user',
         'id_status',
-        'id_kriteria',
         'periode_bulan',
         'periode_tahun',
-        'gambar1','gambar2','gambar3','gambar4','gambar5',
-        'link_vid1','link_vid2','link_vid3','link_vid4','link_vid5',
-        'keterangan'
     ];
 
+    public function details()
+    {
+        return $this->hasMany(FormOpdDetail::class, 'form_opd_id');
+    }
     public $incrementing = false;
     protected $keyType = 'string';
 
@@ -42,9 +42,6 @@ class FormOpd extends Model
     }
 
 
-    // Relasi ke kriteria
-     public function kriterias()
-    {
-        return $this->belongsTo(FormOpdKriteria::class, 'id_kriteria', 'id');
-    }
+   
+    
 }
